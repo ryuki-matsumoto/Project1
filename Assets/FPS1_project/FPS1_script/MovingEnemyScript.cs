@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MovingEnemyScript : MonoBehaviour {
-/*
+    
 	UnityEngine.AI.NavMeshAgent agent; //NavMeshのエージェント
 	GameObject player; //プレイヤー
     
@@ -17,5 +17,5 @@ public class MovingEnemyScript : MonoBehaviour {
 		// 目的地をプレイヤーに設定する。
 		agent.SetDestination (player.transform.position);
 	}
-    */
+    
 }
