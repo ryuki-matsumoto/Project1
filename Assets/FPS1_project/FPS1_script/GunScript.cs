@@ -33,8 +33,9 @@ public class GunScript : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, distance)) {
             Instantiate(sparks, hit.point, Quaternion.identity);
         if (hit.collider.tag == "Enemy") {
+                print("撃たれた");
                 hit.collider.SendMessage("Damage");
-            }
+           }
         }
     }
 }
