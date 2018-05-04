@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class BlockGenerator : MonoBehaviour {
 	public static bool isCursorLocked = true;
     public Camera playerCamera;
-    public float reachableDistance = 100.0f;
+    public float reachableDistance = 10.0f;
     public GameObject blockPrefab;
     public GameObject blockGray;
     private static int ChildCount;
@@ -21,10 +21,14 @@ public class BlockGenerator : MonoBehaviour {
 
     Ray ray;
     RaycastHit hitInfo;
-  //  Renderer blockGrayRenderer;
     Vector3 hitObjPos;
+    Ray ray2;
+    RaycastHit hitInfo2;
+    Vector3 hitObjPos2;
     Image image;
     Sprite[] sprite = new Sprite[5];
+
+    
 
     private float count = 0;
     private float y = 10;
@@ -61,33 +65,52 @@ public class BlockGenerator : MonoBehaviour {
 		}
 
         ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+        ray2 = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
         bool isRayHit = Physics.Raycast(ray, out hitInfo, reachableDistance);
-        Debug.DrawRay(ray.origin, ray.direction, Color.red, 0.0f, false);
+        bool isRayHit2 = Physics.Raycast(ray2, out hitInfo2, reachableDistance);
+
+        Debug.DrawRay(ray.origin, ray.direction * reachableDistance, Color.red, 0.0f, false);
+
         // Show gray block
         if (isRayHit){
             print("hit");
-             for (int i = 0; i < ChildCount; i++){
-                 print("call");
-                 blockGray.transform.GetChild(i).gameObject.GetComponent<Renderer>().enabled = true;
-             }
-            //blockGray.SetActive(true);
-            hitObjPos = hitInfo.point;
-            blockGray.transform.position = hitObjPos + hitInfo.normal * blockWidth;
+            if (hitInfo.collider.tag == "Stage") {
+                for (int i = 0; i < ChildCount; i++){
+                    
+                        blockGray.transform.GetChild(i).gameObject.GetComponent<Renderer>().enabled = true;
+                        blockGray.transform.GetChild(i).gameObject.GetComponent<Renderer>().material.color = new Color(0.4f, 0.4f, 0.4f, 1.0f);
+                                     
+                }
+                hitObjPos = hitInfo.point;
+                blockGray.transform.position = hitObjPos + hitInfo.normal * 0.001f;
+            }
+            else if(hitInfo.collider.tag == "WallwithHP") {
+                hitInfo.collider.gameObject.GetComponent<BrockScript>().select_flag = true;
+                for (int i = 0; i < ChildCount; i++){
+                    blockGray.transform.GetChild(i).gameObject.GetComponent<Renderer>().enabled = false;
+                }
+
+            }
+            else {
+                for (int i = 0; i < ChildCount; i++){
+                    blockGray.transform.GetChild(i).gameObject.GetComponent<Renderer>().enabled = false;
+                }
+            }
         }
+
+        
 
         else{
-            // blockGrayRenderer.enabled = false;
-            
-            for (int i = 0; i < ChildCount; i++){
+                for (int i = 0; i < ChildCount; i++){
                  blockGray.transform.GetChild(i).gameObject.GetComponent<Renderer>().enabled = false;
-            }
-           // blockGray.SetActive(false);
+                }
         }
+        
 
-		// Put blocks
-        if(isRayHit && Input.GetMouseButtonDown(0)){
+        // Put blocks
+        if (isRayHit && Input.GetMouseButtonDown(0) && hitInfo.collider.tag == "Stage"){
             hitObjPos = hitInfo.point;
-            Instantiate(blockPrefab, hitObjPos/* + hitInfo.normal * blockWidth*/, Quaternion.identity);
+            Instantiate(blockPrefab, hitObjPos, Quaternion.identity);
             audioSource.clip = putSound;
             audioSource.Play();
              
@@ -96,11 +119,12 @@ public class BlockGenerator : MonoBehaviour {
         
 
 		// Destoroy blocks
-        if(isRayHit && Input.GetMouseButtonDown(1)){
+        if(isRayHit && Input.GetMouseButtonDown(1) && hitInfo.collider.tag == "WallwithHP"){
             Destroy(hitInfo.transform.gameObject);
             audioSource.clip = destroySound;
             audioSource.Play();
         }
+        
         // Select blocks
         for (int i = 1; i <= block.Length; ++i){
             if (Input.GetKeyDown(i.ToString())) {

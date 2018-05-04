@@ -6361,7 +6361,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 113404, guid: 454ee021f0827e4499066e1841532a56, type: 2}
       propertyPath: m_TagString
-      value: WallwithHP
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 113404, guid: 454ee021f0827e4499066e1841532a56, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -6397,6 +6397,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6513618, guid: 454ee021f0827e4499066e1841532a56, type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 113404, guid: 454ee021f0827e4499066e1841532a56, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
