@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyAnimation : MonoBehaviour {
 
     private Animator anim;
-    public static bool AttackAnim_flag = false;
-    public static bool DownAnim_flag = false;
+    public bool AttackAnim_flag = false;
+    public bool DownAnim_flag = false;
     //public static bool thisObject;
     
 
@@ -19,10 +19,12 @@ public class EnemyAnimation : MonoBehaviour {
     private void OnTriggerEnter(Collider other){
         if(other.gameObject.tag == "Player"){
             PlayerScript.damageflag = true;
+            PlayerScript.PlayerDamage(this.transform.parent.GetComponent<EnemyScript>().enemyAttack);
+            //other.gameObject.GetComponent<PlayerScript>().playerHP -= this.transform.parent.GetComponent<EnemyScript>().enemyAttack;
         }
 
         else if (other.gameObject.tag == "Gate"){
-            ObstacleScript.damage_flag = 1;
+            GateScript.GateDamage(this.transform.parent.GetComponent<EnemyScript>().enemyAttack);
         }
 
         else if(other.gameObject.tag == "WallwithHP") {
@@ -34,6 +36,7 @@ public class EnemyAnimation : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if(DownAnim_flag == true) {
+            print("Down");
             this.GetComponent<Animator>().SetTrigger("Down");
         }
 

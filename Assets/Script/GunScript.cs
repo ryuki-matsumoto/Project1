@@ -9,6 +9,9 @@ public class GunScript : MonoBehaviour {
     AudioSource audioSource; //音源(スピーカー)
     RaycastHit hit; //銃が当たった時の情報
 
+    public float GunSpeed; //銃を撃つスピード
+    public int GunAttack; //銃の攻撃力
+
 	// ゲームが始まった時に1回呼ばれるメソッド
 	void Start () {
         audioSource = gameObject.AddComponent<AudioSource>();
@@ -17,6 +20,8 @@ public class GunScript : MonoBehaviour {
 
 	// ゲームの1フレームごとに呼ばれるメソッド
 	void Update () {
+
+        if(GunSpeed == 12) { }
         if (Input.GetMouseButtonDown(0)){
             audioSource.Play();
             Shot();
@@ -35,7 +40,8 @@ public class GunScript : MonoBehaviour {
         if (hit.collider.tag == "Enemy") {
                 print("撃たれた");
                 hit.collider.SendMessage("Damage");
-           }
+                //hit.collider.gameObject.GetComponent<EnemyScript>().;
+            }
         }
     }
 }

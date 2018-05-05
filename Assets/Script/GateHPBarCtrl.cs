@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HPBarCtrl : MonoBehaviour {
+public class GateHPBarCtrl : MonoBehaviour {
 
     Slider _slider;
     void Start(){
         // スライダーを取得する
         _slider = this.GetComponent<Slider>();
-        _slider.maxValue = PlayerScript.playerHP;
+        _slider.maxValue = GateScript.gateHP;
     }
 
     //float _hp = 0;
     void Update(){
         
         // HPゲージに値を設定
-        _slider.value = PlayerScript.playerHP;
+        _slider.value = GateScript.gateHP;
     }
 }

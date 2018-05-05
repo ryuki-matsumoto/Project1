@@ -25,13 +25,13 @@ public class ObstacleScript : MonoBehaviour {
 
         gateHPLabel.text = "GateHP　: " + gateHP;
 
-        if (damage_flag >= 1){
+       /* if (damage_flag >= 1){
             ObstacleDamage();
-        }
+        }*/
 
     }
 
-    void ObstacleDamage(){
+    public static void ObstacleDamage(int attack){
         if (damage_flag == 1){
             gateHP -= EnemyScript.enemyAttack_Global;
             if(gateHP <= 0) {
@@ -45,7 +45,7 @@ public class ObstacleScript : MonoBehaviour {
         }
 
         else if(damage_flag == 2){
-            obstacleHP--;
+          //  obstacleHP--;
             damage_flag = 0;
         }
     }

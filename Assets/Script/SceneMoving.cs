@@ -8,6 +8,7 @@ public class SceneMoving : MonoBehaviour {
 
     public static SceneMoving singleton;
 
+    
     void Awake(){
         //　スクリプトが設定されていなければゲームオブジェクトを残しつつスクリプトを設定
         if (singleton == null){

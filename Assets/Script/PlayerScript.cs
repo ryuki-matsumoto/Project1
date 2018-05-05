@@ -11,18 +11,18 @@ public class PlayerScript: MonoBehaviour {
 	// ゲームの1フレームごとに呼ばれるメソッド
 	void Update () {
         HPLabel.text = "PlayerHP　: " + playerHP;
-        if(damageflag == true){
+        /*if(damageflag == true){
             PlayerDamage();
-        }
+        }*/
 
 	}
 
 	// ダメージを与えられた時に行いたい命令を書く
-	void PlayerDamage(){
-        playerHP -= EnemyScript.enemyAttack_Global;
+	public static void PlayerDamage(int attack){
+        playerHP -= attack;
         if(playerHP <= 0){
             playerHP = 0;
-            //SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");
             print("aaaa");
         }
         
