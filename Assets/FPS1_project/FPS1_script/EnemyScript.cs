@@ -4,6 +4,8 @@ using System.Collections;
 public class EnemyScript : MonoBehaviour {
 
 	public int enemyHP = 3; // 敵の体力
+    public int enemyAttack = 1;
+    public static int enemyAttack_Global;
 	public GameObject Bomb; // 爆発のオブジェクト
     Animator anim;
     UnityEngine.AI.NavMeshAgent agent; //NavMeshのエージェント
@@ -18,6 +20,7 @@ public class EnemyScript : MonoBehaviour {
     private bool gFollow_flag = false;
 
     void Start(){
+        enemyAttack_Global = enemyAttack;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Gate");
         player = GameObject.FindGameObjectWithTag("Player");

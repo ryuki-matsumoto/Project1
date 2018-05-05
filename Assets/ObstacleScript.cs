@@ -10,7 +10,7 @@ public class ObstacleScript : MonoBehaviour {
     GameObject gate;
 
     public static int gateHP = 10;
-    public int obstacleHP;
+    public int obstacleHP = 5;
     public static int damage_flag = 0;
 
     public Text gateHPLabel;
@@ -23,7 +23,7 @@ public class ObstacleScript : MonoBehaviour {
 
     void Update(){
 
-        gateHPLabel.text = "GateHP:" + gateHP;
+        gateHPLabel.text = "GateHP　: " + gateHP;
 
         if (damage_flag >= 1){
             ObstacleDamage();
@@ -33,8 +33,9 @@ public class ObstacleScript : MonoBehaviour {
 
     void ObstacleDamage(){
         if (damage_flag == 1){
-            gateHP--;
+            gateHP -= EnemyScript.enemyAttack_Global;
             if(gateHP <= 0) {
+                gateHP = 0;
                 //SceneManager.LoadScene("GameOver");
                 print("aaaa");
             }

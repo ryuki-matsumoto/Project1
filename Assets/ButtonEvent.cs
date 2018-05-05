@@ -34,6 +34,8 @@ public class ButtonEvent : MonoBehaviour {
         }
     }
 
+    
+
     public void DisableWindow(){
         if (canvasGroup == null || canvasGroup.interactable){
             //　ウインドウを非アクティブにする
@@ -47,6 +49,12 @@ public class ButtonEvent : MonoBehaviour {
             Camera.main.GetComponent<OperationStatusWindow>().ChangeWindow(window);
         }
     }
+
+    public void OnClick()
+    {
+        print("aaaa");
+    }
+
   /*  //　前の画面に戻るボタンを選択状態にする
     public void SelectReturnButton(){
         EventSystem.current.SetSelectedGameObject(returnButton);
