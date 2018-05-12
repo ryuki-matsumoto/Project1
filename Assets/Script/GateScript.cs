@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GateScript : MonoBehaviour {
 
-    public static int gateHP = 10;
+    public static int maxgateHP = 10;
+    public static int gateHP = maxgateHP;
     public static int damage_flag = 0;
 
     public Text gateHPLabel;
@@ -17,7 +19,14 @@ public class GateScript : MonoBehaviour {
     }
 
     void Update(){
-        gateHPLabel.text = "GateHP　: " + gateHP;
+        if (MoveToPM.pm_flag) {
+
+        }
+
+        else {
+            //gateHPLabel.text = "GateHP　: " + gateHP;
+        }
+        
 
     }
 
@@ -27,8 +36,12 @@ public class GateScript : MonoBehaviour {
 
         if (gateHP <= 0){
                 gateHP = 0;
-                //SceneManager.LoadScene("GameOver");
+                GameoverScript.GameOverFlag = true;
                 print("aaaa");
+        }
+
+        if (GameoverScript.GameOverFlag) {
+            gateHP = maxgateHP;
         }
 
     }

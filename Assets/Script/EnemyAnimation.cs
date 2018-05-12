@@ -7,6 +7,7 @@ public class EnemyAnimation : MonoBehaviour {
     private Animator anim;
     public bool AttackAnim_flag = false;
     public bool DownAnim_flag = false;
+    
     //public static bool thisObject;
     
 
@@ -28,7 +29,8 @@ public class EnemyAnimation : MonoBehaviour {
         }
 
         else if(other.gameObject.tag == "WallwithHP") {
-            ObstacleScript.damage_flag = 2;
+            //ObstacleScript.damage_flag = 2;
+            other.gameObject.GetComponent<ObstacleScript>().obstacleHP -= this.transform.parent.GetComponent<EnemyScript>().enemyAttack;
         }  
 
     }
@@ -42,6 +44,7 @@ public class EnemyAnimation : MonoBehaviour {
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("finish")){
            Destroy(this.transform.parent.gameObject); //自分をしょうめつさせる
+            ScoreManager.instance.enemyCount++;
         }
 
         if(AttackAnim_flag == true){

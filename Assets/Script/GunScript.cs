@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GunScript : MonoBehaviour {
 
@@ -11,27 +12,40 @@ public class GunScript : MonoBehaviour {
 
     public float GunSpeed; //銃を撃つスピード
     public int GunAttack; //銃の攻撃力
+    public static int Attack_rate = 0;
+
+    void Awake(){
+        GunAttack += Attack_rate;
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = gunSound;
+    }
+
+    
+   
 
 	// ゲームが始まった時に1回呼ばれるメソッド
 	void Start () {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = gunSound;
+        
 	}
 
 	// ゲームの1フレームごとに呼ばれるメソッド
 	void Update () {
+       
 
-        if(GunSpeed == 12) { }
-        if (Input.GetMouseButtonDown(0)){
-            audioSource.Play();
-            Shot();
-            Instantiate(explosion, transform.position, Quaternion.identity);
-        }
+        
+            if (Input.GetMouseButtonDown(0)){
+            print("aaa");
+                Shot();
+                Instantiate(explosion, transform.position, Quaternion.identity);
+  
+             }
+        
        
 	}
 
     // 銃をうつ時に行いたいことをこの中に書く
     void Shot() {
+        audioSource.Play();
         Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Ray ray = Camera.main.ScreenPointToRay(center);
         float distance = 100f;

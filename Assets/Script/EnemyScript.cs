@@ -19,7 +19,7 @@ public class EnemyScript : MonoBehaviour {
     private bool pFollow_flag = false;
     private bool wFollow_flag = false;
     private bool gFollow_flag = false;
-
+    GameObject Obstacle;
     bool my_Downflag = false;
 
     void Start(){
@@ -35,7 +35,7 @@ public class EnemyScript : MonoBehaviour {
         enemyHP--; //体力を1減らす。
         target = GameObject.FindGameObjectWithTag("Player");
       // 体力がゼロになったら
-        if (enemyHP == 0){
+        if (enemyHP <= 0){
             if (Bomb){
                 // EnemyAnimation.DownAnim_flag = true;
                 // downflag = true;
@@ -44,7 +44,7 @@ public class EnemyScript : MonoBehaviour {
                 agent.isStopped = true;
                 Instantiate(Bomb, transform.position, transform.rotation);   // 爆発を起こす 
             }
-            ScoreManager.instance.enemyCount++;// 敵を倒した数を1増やす
+            // 敵を倒した数を1増やす
         }
     }
 
@@ -61,14 +61,13 @@ public class EnemyScript : MonoBehaviour {
 
         else if (col.gameObject.tag == "WallwithHP"){
             //EnemyAnimation.AttackAnim_flag = true;
-            if(target = player) {
-
-            }
-            else {
+           
                 this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().AttackAnim_flag = true;
                 agent.isStopped = true;
-                target = GameObject.FindGameObjectWithTag("WallwithHP");
-            }
+                target = col.gameObject;
+                Obstacle = col.gameObject;
+                print("AgentStop");
+           
             
         }
 
@@ -76,7 +75,7 @@ public class EnemyScript : MonoBehaviour {
             //EnemyAnimation.AttackAnim_flag = true;
             this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().AttackAnim_flag = true;
             agent.isStopped = true;
-            print("AgentStop");
+            
           
         }
 
@@ -85,25 +84,41 @@ public class EnemyScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //目的地をターゲットに設定する
-        agent.SetDestination(target.transform.position);
-        
-        if (this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().DownAnim_flag == false) {
+        if (!MoveToPM.pm_flag)
+        {
+            //目的地をターゲットに設定する
+            agent.SetDestination(target.transform.position);
 
-            if ((Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 5
-                || Mathf.Abs((target.transform.position.z) - (this.transform.position.z)) > 5)){
+            if (this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().DownAnim_flag == false
+                && target != GameObject.FindGameObjectWithTag("Gate"))
+            {
+
+                if ((Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 5
+                    || Mathf.Abs((target.transform.position.z) - (this.transform.position.z)) > 5))
+                {
 
                     agent.isStopped = false;
                     this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().AttackAnim_flag = false;
 
-            }
+                }
 
-            if (Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 10
-                || Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 10){
+                if (Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 10
+                    || Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 10)
+                {
 
                     target = GameObject.FindGameObjectWithTag("Gate");
-            }
+                }
+                if (target.GetComponent<ObstacleScript>().obstacleHP <= 0)
+                {
+                    print("target");
 
+                    agent.isStopped = false;
+                    this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().AttackAnim_flag = false;
+                    target = GameObject.FindGameObjectWithTag("Gate");
+                }
+
+
+            }
         }
         
 
