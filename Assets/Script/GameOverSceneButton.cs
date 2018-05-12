@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GameOverSceneButton : MonoBehaviour {
 
-	
+	public static bool RetryFlag = false;
+
     public void OnRetry() {
+        RetryFlag = true;
         GameoverScript.GameOverFlag = false;
     }
 

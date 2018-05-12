@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerScript: MonoBehaviour {
-    public static int maxplayerHP = 10;
+    public static int maxplayerHP = 30;
     public static int playerHP = maxplayerHP; //Playerの体力
     public Text HPLabel; //体力表示
     public static bool damageflag;

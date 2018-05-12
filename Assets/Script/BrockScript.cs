@@ -14,8 +14,8 @@ public class BrockScript : MonoBehaviour {
 
  	// Use this for initialization
 	void Start () {
-        default_color = this.GetComponent<Renderer>().material.color;
-        select_color = new Color(1.0f, 0.0f, 0.0f, 0.4f);
+        default_color = new Color(0.0f, 0.0f, 0.0f);
+        select_color = new Color(0.3f, 0.3f, 0.0f);
         count = this.transform.childCount;
 	}
 	
@@ -24,12 +24,12 @@ public class BrockScript : MonoBehaviour {
         /*for (int i = 0; i < count; i++){
             this.transform.GetChild(i).gameObject.GetComponent<Renderer>().material.color = default_color;
         }*/
-        this.gameObject.GetComponent<Renderer>().material.color = default_color;
+        this.gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", default_color);
         if (select_flag) {
             /*for(int i = 0;i < count; i++) {
                 this.transform.GetChild(i).gameObject.GetComponent<Renderer>().material.color = select_color;
             }*/
-            this.gameObject.GetComponent<Renderer>().material.color = select_color;
+            this.gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", select_color);
             if (Input.GetMouseButtonDown(0)) {
                 this.transform.Rotate(0.0f, 15.0f, 0.0f);
             }

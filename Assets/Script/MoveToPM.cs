@@ -16,11 +16,16 @@ public class MoveToPM : MonoBehaviour {
 	// Update is called once per frame
     
 	void Update () {
-        if (pm_goflag) {
-            GameoverScript.GameOverFlag = false;
-            SceneManager.LoadScene("pm");
-            pm_goflag = false;
-        }
+        //if (GameoverScript.GameOverFlag) {
+            if (pm_goflag){
+                GameoverScript.GameOverFlag = false;
+                pm_goflag = false;
+                SceneManager.LoadScene("pm");
+                
+            }
+    //    }
+
+        
 	}
     
 }

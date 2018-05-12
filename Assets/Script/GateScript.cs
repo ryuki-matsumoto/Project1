@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GateScript : MonoBehaviour {
 
-    public static int maxgateHP = 10;
+    public static int maxgateHP = 30;
     public static int gateHP = maxgateHP;
     public static int damage_flag = 0;
 
@@ -24,7 +24,7 @@ public class GateScript : MonoBehaviour {
         }
 
         else {
-            //gateHPLabel.text = "GateHP　: " + gateHP;
+            gateHPLabel.text = "GateHP　: " + gateHP;
         }
         
 

@@ -32,9 +32,10 @@ public class ScoreManager : MonoBehaviour {
 		if (scoreLabel) {
 			// 倒した数をTextに表示する。
 			scoreLabel.text = "倒した数:" + enemyCount.ToString ();
-            if(enemyCount == 3) {
+            if(enemyCount == 6) {
                 // system.GetComponent<Pausable>().pausing = true;
-                SceneManager.LoadScene("Result");
+                //SceneManager.LoadScene("Result");
+                GameoverScript.ResultFlag = true;
             }
 		} else {
 			if (GameObject.Find ("EnemyCount")) {

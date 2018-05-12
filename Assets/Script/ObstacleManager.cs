@@ -27,17 +27,23 @@ public class ObstacleManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        if (GameoverScript.GameOverFlag) {
-            print("ゲームオーバー");
+        if (GameOverSceneButton.RetryFlag) {
+            print("リトライ");
+            PlayerScript.playerHP = PlayerScript.maxplayerHP;
+            GateScript.gateHP = GateScript.maxgateHP;
             if (count_method > 0){
                 print("カウント");
                 ReSpawn();
             }
+            GameoverScript.GameOverFlag = false;
+            
         }
 
         else{
                 count_method = 1;
             }
+
+        
 
         if (MoveToPM.pm_flag){
             if (count_method2 > 0){

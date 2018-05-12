@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour {
     void Update () {
 		timer -= Time.deltaTime; //タイマーを減らす
 
-        if (GameoverScript.GameOverFlag || MoveToPM.pm_flag) {
+        if (GameoverScript.GameOverFlag || MoveToPM.pm_flag || GameoverScript.ResultFlag) {
             if(count_method > 0) {
                 print("destroy");
                 DestroyClone();
