@@ -59,7 +59,8 @@ public class ObstacleManager : MonoBehaviour {
     }
 
     void ReSpawn(){
-        for(int i = 0;i < Obstacles.Length; i++) {
+        print(Obstacles.Length);
+        for (int i = 0;i < Obstacles.Length; i++) {
             Obstacles[i].GetComponent<ObstacleScript>().obstacleHP = Obstacles[i].GetComponent<ObstacleScript>().maxobstacleHP;
             Obstacles[i].SetActive(true);
         }
@@ -68,6 +69,7 @@ public class ObstacleManager : MonoBehaviour {
     }
 
     void ObstacleDestroy() {
+        
         for (int i = 0; i < Obstacles.Length; i++){
             Obstacles[i].GetComponent<ObstacleScript>().obstacleHP = Obstacles[i].GetComponent<ObstacleScript>().maxobstacleHP;
             if(Obstacles[i].activeSelf == false) {

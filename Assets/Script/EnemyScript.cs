@@ -47,6 +47,19 @@ public class EnemyScript : MonoBehaviour {
             // 敵を倒した数を1増やす
         }
     }
+    /*
+    void OnCollisionEnter(Collision collision){
+        if (collision.gameObject.tag == "WallwithHP") {
+            //EnemyAnimation.AttackAnim_flag = true;
+            this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().AttackAnim_flag = true;
+            agent.isStopped = true;
+            target = collision.gameObject;
+            Obstacle = collision.gameObject;
+            print("AgentStop");
+
+
+        }
+    }*/
 
     // 物にさわった時に呼ばれる
     void OnTriggerEnter(Collider col){

@@ -24,7 +24,7 @@ public class GateScript : MonoBehaviour {
         }
 
         else {
-            gateHPLabel.text = "GateHP　: " + gateHP;
+            //gateHPLabel.text = "GateHP　: " + gateHP;
         }
         
 

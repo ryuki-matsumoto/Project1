@@ -4,27 +4,7 @@ using UnityEngine.UI;
 
 public class BlockGenerator : MonoBehaviour {
 
-    /* Ray ray2;
-    RaycastHit hitInfo2;
-    Vector3 hitObjPos2;
-    */
-    //public GameObject[] block;
-    // float blockWidth;
-    //GameObject parentobj = GameObject.Find("Obstacle").gameObject;
-    //public GameObject AutoBlock;
-    //int i = 0;
-    //private float count = 0;
-    //private float y = 10;
-    /*
-    void Awake(){
-        //子オブジェクトの数を取得
-       // ChildCount = blockGray.transform.childCount;
-      /*  for (int i = 0;i < block.Length; i++){
-            sprite[i] = Resources.Load<Sprite>(block[i].name);
-        }
-
-    }*/
-
+    
     public static bool isCursorLocked = true;
     public Camera playerCamera;
     public float reachableDistance = 10.0f;

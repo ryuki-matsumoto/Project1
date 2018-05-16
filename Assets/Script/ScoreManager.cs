@@ -9,7 +9,8 @@ public class ScoreManager : MonoBehaviour {
 	public int enemyCount = 0; //敵を倒した数
 	public Text scoreLabel; //UIテキスト
     public GameObject system;
-    
+    public static int TargetCount = 5;
+
 	void Awake(){
 		if (instance == null) {
 			instance = this;
@@ -32,7 +33,7 @@ public class ScoreManager : MonoBehaviour {
 		if (scoreLabel) {
 			// 倒した数をTextに表示する。
 			scoreLabel.text = "倒した数:" + enemyCount.ToString ();
-            if(enemyCount == 6) {
+            if(enemyCount == TargetCount) {
                 // system.GetComponent<Pausable>().pausing = true;
                 //SceneManager.LoadScene("Result");
                 GameoverScript.ResultFlag = true;

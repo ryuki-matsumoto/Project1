@@ -50,16 +50,33 @@ public class ButtonEvent : MonoBehaviour {
         }
     }
 
-    public void OnClick()
-    {
+    public void OnClick(){
         print("aaaa");
     }
 
-  /*  //　前の画面に戻るボタンを選択状態にする
-    public void SelectReturnButton(){
-        EventSystem.current.SetSelectedGameObject(returnButton);
+    public void MissionArrowRightClick(){
+        MissionScript.MissionNum++;
+        if (MissionScript.MissionNum > 5){
+            MissionScript.MissionNum = 1;
+        }
     }
-    */
+
+    public void MissionArrowLeftClick(){
+        MissionScript.MissionNum--;
+        if (MissionScript.MissionNum < 1){
+            MissionScript.MissionNum = 5;
+        }
+    }
+
+    public void MissionStart(){
+        MissionScript.MissionStartFlag = true;
+    }
+
+    /*  //　前の画面に戻るボタンを選択状態にする
+      public void SelectReturnButton(){
+          EventSystem.current.SetSelectedGameObject(returnButton);
+      }
+      */
     // Update is called once per frame
-   
+
 }
