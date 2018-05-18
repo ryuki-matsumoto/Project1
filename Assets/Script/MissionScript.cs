@@ -11,6 +11,7 @@ public class MissionScript : MonoBehaviour {
     public Text MissionInfo; //ミッションの情報
     public static int MissionNum = 1; //ミッション番号
     public static bool MissionStartFlag = false; //戦いを始めるか否か
+    public static bool GameStartFlag;
     //public static int MissionQ = 5;
 
 
@@ -25,85 +26,89 @@ public class MissionScript : MonoBehaviour {
         //ミッション番号によって内容を変えていく
         switch (MissionNum) {
             case 1:
-                MissionTitle.text = "牛の野望";
-                MissionTip.text = "敵を10体倒せ！";
-                MissionInfo.text = "どうやら牛が何かを企んでいるようだ。これを阻止しないと牛による逆襲が始まってしまう。何とかしてくれ。";
-                if (MissionStartFlag) {
-                    ScoreManager.TargetCount = 10;
+                MissionTitle.text = "練習1";
+                MissionTip.text = "敵を7体倒せ！";
+                MissionInfo.text = "練習するんやで。";
+                if (MissionStartFlag){
+                    ScoreManager.TargetCount = 7;
                     GameoverScript.GameOverFlag = false;
                     MoveToPM.pm_flag = false;
                     GameoverScript.ResultFlag = false;
+                    ObstacleManager.GameStartFlag = true;
+                    MissionStartFlag = false;
+                    
                     SceneManager.LoadScene("am");
                 }
+                
                 break;
             case 2:
-                MissionTitle.text = "Chicken!";
-                MissionTip.text = "敵を10体倒せ！";
-                MissionInfo.text = "クッソワロタwwww。鶏が無茶苦茶やっとるわww。何とかして止めてくれww。";
+                MissionTitle.text = "練習2";
+                MissionTip.text = "敵を15体倒せ！";
+                MissionInfo.text = "練習、するんやで。";
                 if (MissionStartFlag){
-                    ScoreManager.TargetCount = 10;
+                    ScoreManager.TargetCount = 15;
                     GameoverScript.GameOverFlag = false;
                     MoveToPM.pm_flag = false;
                     GameoverScript.ResultFlag = false;
+                    ObstacleManager.GameStartFlag = true;
+                    MissionStartFlag = false;
+                    
+                    SceneManager.LoadScene("am");
+                }
+                
+                break;
+            case 3:
+                MissionTitle.text = "Chicken!";
+                MissionTip.text = "敵を15体倒せ！";
+                MissionInfo.text = "クッソワロタwwww。鶏が無茶苦茶やっとるわww。何とかして止めてくれww。";
+                if (MissionStartFlag){
+                    ScoreManager.TargetCount = 15;
+                    GameoverScript.GameOverFlag = false;
+                    MoveToPM.pm_flag = false;
+                    GameoverScript.ResultFlag = false;
+                    EnemySpawner.FirstRandom = 1.0f;
+                    EnemySpawner.LastRandom = 2.0f;
+                    ObstacleManager.GameStartFlag = true;
+                    MissionStartFlag = false;
+                   
+                    SceneManager.LoadScene("am");
+                }
+               
+                break;
+            case 4:
+                MissionTitle.text = "牛の野望";
+                MissionTip.text = "敵を15体倒せ！";
+                MissionInfo.text = "どうやら牛が何かを企んでいるようだ。これを阻止しないと牛による逆襲が始まってしまう。何とかしてくれ。";
+                if (MissionStartFlag){
+                    ScoreManager.TargetCount = 15;
+                    GameoverScript.GameOverFlag = false;
+                    MoveToPM.pm_flag = false;
+                    GameoverScript.ResultFlag = false;
+                    EnemySpawner.FirstRandom = 2.0f;
+                    EnemySpawner.LastRandom = 3.0f;
+                    ObstacleManager.GameStartFlag = true;
+                    MissionStartFlag = false;
+                   
                     SceneManager.LoadScene("am");
                 }
                 break;
-            case 3:
+            /*case 5:
                 MissionTitle.text = "王の余裕";
                 MissionTip.text = "敵を1体倒せ！";
-                MissionInfo.text = "何だ、アイツは！？ただのバイソンにしてはやけに雰囲気が違うぞ！気を付けてくれ！";
+                MissionInfo.text = "何だ、アイツは！？ただの牛にしてはやけに雰囲気が違うぞ！気を付けてくれ！";
                 if (MissionStartFlag){
                     ScoreManager.TargetCount = 1;
                     GameoverScript.GameOverFlag = false;
                     MoveToPM.pm_flag = false;
                     GameoverScript.ResultFlag = false;
+                    ObstacleManager.GameStartFlag = true;
+                    MissionStartFlag = false;
+                    GameStartFlag = true;
                     SceneManager.LoadScene("am");
                 }
-                break;
-            case 4:
-                MissionTitle.text = "チュートリアル";
-                MissionTip.text = "敵を7体倒せ！";
-                MissionInfo.text = "どうやら牛が何かを企んでいるようだ。これを阻止しないと牛による逆襲が始まってしまう。何とかしてくれ。";
-                if (MissionStartFlag){
-                    ScoreManager.TargetCount = 7;
-                    GameoverScript.GameOverFlag = false;
-                    MoveToPM.pm_flag = false;
-                    GameoverScript.ResultFlag = false;
-                    SceneManager.LoadScene("am");
-                }
-                break;
-            case 5:
-                MissionTitle.text = "チュートリアル2";
-                MissionTip.text = "敵を7体倒せ！";
-                MissionInfo.text = "どうやら牛が何かを企んでいるようだ。これを阻止しないと牛による逆襲が始まってしまう。何とかしてくれ。";
-                if (MissionStartFlag){
-                    ScoreManager.TargetCount = 7;
-                    GameoverScript.GameOverFlag = false;
-                    MoveToPM.pm_flag = false;
-                    GameoverScript.ResultFlag = false;
-                    SceneManager.LoadScene("am");
-                }
-                break;
+                break;*/
             default: break;
         }
 	}
-/*
-    public void MissionArrowRightClick() {
-        MissionNum++;
-        if(MissionNum > MissionQ) {
-            MissionNum = 1;
-        }
-    }
 
-    public void MissionArrowLeftClick(){
-        MissionNum--;
-        if (MissionNum < 1){
-            MissionNum = 1;
-        }
-    }
-
-    public void MissionStart() {
-        MissionStartFlag = true;
-    }
-    */
 }

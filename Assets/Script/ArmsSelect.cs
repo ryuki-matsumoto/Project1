@@ -19,8 +19,14 @@ public class ArmsSelect : MonoBehaviour {
 
     int i = 0; //武器のgameobjectや武器の画像の配列に使うループカウンタ
 
-	// Use this for initialization
-	void Start () {
+    AudioSource audioSource; //音源(スピーカー)
+    public AudioClip gunSelect; //武器を変えた時の音
+
+
+    // Use this for initialization
+    void Start () {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = gunSelect;
         image = SelectedImage.GetComponent<Image>(); //imageにシーンに表示するImageのコンポーネントを設定
         selectedArm = Arms[0]; //最初に選択している武器を設定
         i = 0; //ループカウンタを初期値に設定
@@ -30,6 +36,7 @@ public class ArmsSelect : MonoBehaviour {
 	void Update () {
         //右矢印キーを押したとき武器を切り替える
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            audioSource.Play();
             selectedArm.SetActive(false); //現在選択している武器gameobjectを非アクティブにする
             i++;
             if (i >= Arms.Length){ //配列の要素数をループカウンタが越えるとまずいのでここでもう一度最初からスタート
@@ -42,6 +49,7 @@ public class ArmsSelect : MonoBehaviour {
         }
         //左矢印キーを押したとき武器を逆順に切り替える
         if (Input.GetKeyDown(KeyCode.LeftArrow)){
+            audioSource.Play();
             selectedArm.SetActive(false); //現在選択している武器gameobjectを非アクティブにする
             i--;
             if (i < 0)

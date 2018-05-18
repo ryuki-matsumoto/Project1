@@ -42,16 +42,16 @@ public class EnemyAnimation : MonoBehaviour {
             this.GetComponent<Animator>().SetTrigger("Down");
         }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("finish")){
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Finish")){
            Destroy(this.transform.parent.gameObject); //自分をしょうめつさせる
             ScoreManager.instance.enemyCount++;
         }
 
         if(AttackAnim_flag == true){
-            anim.SetBool("Attack2", true);
+            anim.SetBool("Attack", true);
         }
         else if(AttackAnim_flag == false){
-            anim.SetBool("Attack2", false);
+            anim.SetBool("Attack", false);
         }
 
     }

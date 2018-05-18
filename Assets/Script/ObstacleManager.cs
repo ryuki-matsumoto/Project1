@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObstacleManager : MonoBehaviour {
 
@@ -9,7 +10,7 @@ public class ObstacleManager : MonoBehaviour {
     GameObject[] Obstacles;//子オブジェクト(障害物)の取得
     int childnum ;//子オブジェクトの数
     public GameObject parent;//親オブジェクト
-
+    public static bool GameStartFlag;
     // Use this for initialization
     void Start () {
         //  int Childnum = this.transform.childCount;
@@ -29,14 +30,44 @@ public class ObstacleManager : MonoBehaviour {
         
         if (GameOverSceneButton.RetryFlag) {
             print("リトライ");
-            PlayerScript.playerHP = PlayerScript.maxplayerHP;
-            GateScript.gateHP = GateScript.maxgateHP;
+            
+            print(Obstacles.Length);
+            PlayerScript.playerHP = PlayerScript.maxplayerHP + PlayerScript.plus;
+            GateScript.gateHP = GateScript.maxgateHP + PlayerScript.plus;
             if (count_method > 0){
                 print("カウント");
                 ReSpawn();
             }
             GameoverScript.GameOverFlag = false;
             
+        }
+        if (GameoverScript.GoHomeFlag) {
+            PlayerScript.playerHP = PlayerScript.maxplayerHP + PlayerScript.plus;
+            GateScript.gateHP = GateScript.maxgateHP + PlayerScript.plus;
+            if (count_method > 0){
+                print("GoHome");
+                ReSpawn();
+            }
+            GameoverScript.GameOverFlag = false;
+            SceneManager.LoadScene("pm");
+            GameoverScript.GoHomeFlag = false;
+        }
+
+        if (GameoverScript.TitleFlag) {
+            PlayerScript.playerHP = PlayerScript.maxplayerHP + PlayerScript.plus;
+            GateScript.gateHP = GateScript.maxgateHP + GateScript.plus;
+            if (count_method > 0){
+                print("GoHome");
+                ReSpawn();
+            }
+            GameoverScript.GameOverFlag = false;
+            SceneManager.LoadScene("Title");
+            GameoverScript.TitleFlag = false;
+        }
+
+        if (GameStartFlag) {
+            Obstacles = GameObject.FindGameObjectsWithTag("WallwithHP");
+            GameStartFlag = false;
         }
 
         else{

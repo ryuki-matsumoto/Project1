@@ -11,10 +11,18 @@ public class GameOverSceneButton : MonoBehaviour {
         GameoverScript.GameOverFlag = false;
     }
 
+    public void GoHome() {
+        GameoverScript.GoHomeFlag = true;
+    }
+
     public void OnNextPhase() {
         print("押された");
         MoveToPM.pm_flag = true;
     }
 
+    public void Title() {
+        GameoverScript.TitleFlag = true;
+        GameoverScript.ResultFlag = false;
+    }
 
 }

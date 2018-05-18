@@ -116,7 +116,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1161927153941722}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 3
   enemyAttack: 1
-  Bomb: {fileID: 194412, guid: 7ef488767ed9f41b3b272ea2939d2a57, type: 2}
+  Bomb: {fileID: 1340067053791924, guid: 3ada3d0f0491067479ab0694a60c839f, type: 2}
 --- !u!135 &135314186124262588
 SphereCollider:
   m_ObjectHideFlags: 1

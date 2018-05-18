@@ -64,7 +64,7 @@ public class BlockGenerator : MonoBehaviour {
         // Show gray block
         //rayがgameobjectに当たったとき
         if (isRayHit){
-            print("hit");
+            
             //もしrayが当たったgameobjectがTerrain(Tagはステージ)なら
             if (hitInfo.collider.tag == "Stage") {
                 //blockGray.SetActive(true); //仮想のgameobjectをアクティブ化
@@ -75,8 +75,9 @@ public class BlockGenerator : MonoBehaviour {
                 blockGray.transform.position = hitObjPos + hitInfo.normal * 0.001f; //rayが当たったその場に仮想のgameObjectを生成(おそらくここが原因)
             }
             //もし障害物にrayが当たれば
-            else if (hitInfo.collider.tag == "WallwithHP") { 
-                hitInfo.collider.gameObject.GetComponent<BrockScript>().select_flag = true; //その障害物を選択状態にする
+            else if (hitInfo.collider.tag == "WallwithHP") {
+                print("hit");
+                hitInfo.collider.gameObject.transform.GetChild(0).GetComponent<BrockScript>().select_flag = true; //その障害物を選択状態にする
                 //blockGray.SetActive(false); //仮想のgameobjectは生成しない
                 blockGray.transform.GetChild(0).GetComponent<Renderer>().enabled = false;
             }

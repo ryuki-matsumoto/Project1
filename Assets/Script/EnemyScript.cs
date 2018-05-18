@@ -31,8 +31,8 @@ public class EnemyScript : MonoBehaviour {
         
     }
 
-    void Damage(){
-        enemyHP--; //体力を1減らす。
+    public void Damage(int attack){
+        enemyHP -= attack; //体力を1減らす。
         target = GameObject.FindGameObjectWithTag("Player");
       // 体力がゼロになったら
         if (enemyHP <= 0){
@@ -101,14 +101,22 @@ public class EnemyScript : MonoBehaviour {
         {
             //目的地をターゲットに設定する
             agent.SetDestination(target.transform.position);
+            /*
+            if (enemyHP <= 0){
+                if (Bomb){
+                    print("aaaa");
+                    this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().DownAnim_flag = true;
+                    agent.isStopped = true;
+                    Instantiate(Bomb, transform.position, transform.rotation);   // 爆発を起こす 
+                }
+                // 敵を倒した数を1増やす
+            }*/
 
             if (this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().DownAnim_flag == false
-                && target != GameObject.FindGameObjectWithTag("Gate"))
-            {
+                && target != GameObject.FindGameObjectWithTag("Gate")){
 
                 if ((Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 5
-                    || Mathf.Abs((target.transform.position.z) - (this.transform.position.z)) > 5))
-                {
+                    || Mathf.Abs((target.transform.position.z) - (this.transform.position.z)) > 5)){
 
                     agent.isStopped = false;
                     this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().AttackAnim_flag = false;
@@ -116,21 +124,16 @@ public class EnemyScript : MonoBehaviour {
                 }
 
                 if (Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 10
-                    || Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 10)
-                {
+                    || Mathf.Abs((target.transform.position.x) - (this.transform.position.x)) > 10){
 
                     target = GameObject.FindGameObjectWithTag("Gate");
                 }
-                if (target.GetComponent<ObstacleScript>().obstacleHP <= 0)
-                {
+                if (target.GetComponent<ObstacleScript>().obstacleHP <= 0){
                     print("target");
-
                     agent.isStopped = false;
                     this.transform.GetChild(1).gameObject.GetComponent<EnemyAnimation>().AttackAnim_flag = false;
                     target = GameObject.FindGameObjectWithTag("Gate");
                 }
-
-
             }
         }
         

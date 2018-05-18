@@ -49,14 +49,16 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000012828139180}
-  - component: {fileID: 95000011954286902}
+  - component: {fileID: 54304056199797794}
+  - component: {fileID: 65844045446040774}
+  - component: {fileID: 114898397222416332}
   m_Layer: 0
   m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012863176732
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,20 +230,42 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013495238466}
   m_Mesh: {fileID: 4300000, guid: e74283e45ca6441eba462eb4c68ca3d4, type: 3}
---- !u!95 &95000011954286902
-Animator:
-  serializedVersion: 3
+--- !u!54 &54304056199797794
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011910196406}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65844045446040774
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011910196406}
+  m_Material: {fileID: 13400000, guid: 1bb276490101f2e4584a9a9baf5b4d5b, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.26, z: 0.22}
+  m_Center: {x: 0, y: 0.11, z: 0}
+--- !u!114 &114898397222416332
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011910196406}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e74283e45ca6441eba462eb4c68ca3d4, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799716b509fa30244ac041b89a52b0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab_HitEffect2: {fileID: 194412, guid: 7ef488767ed9f41b3b272ea2939d2a57, type: 2}

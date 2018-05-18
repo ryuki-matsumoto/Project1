@@ -7,6 +7,8 @@ public class GameoverScript : MonoBehaviour {
 
     public static bool GameOverFlag = false;
     public static bool ResultFlag = false;
+    public static bool GoHomeFlag = false;
+    public static bool TitleFlag = false;
     public GameObject[] cameras = new GameObject[2];
     public GameObject GameOverScreen;
     public GameObject amScreen;

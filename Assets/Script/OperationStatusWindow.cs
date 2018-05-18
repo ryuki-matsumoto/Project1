@@ -12,9 +12,17 @@ public class OperationStatusWindow : MonoBehaviour {
     [SerializeField]
     private GameObject[] windowLists;
     private bool open_flag = false;
-   
-	// Update is called once per frame
-	void Update () {
+
+    public AudioClip open;
+    AudioSource audioSource3;
+
+    void Start(){
+        audioSource3 = gameObject.AddComponent<AudioSource>();
+        audioSource3.clip = open;
+    }
+
+    // Update is called once per frame
+    void Update () {
         //　ステータスウインドウのオン・オフ
         if (Input.GetKeyDown(KeyCode.E)){
              propertyWindow.SetActive(!propertyWindow.activeSelf);
@@ -29,6 +37,7 @@ public class OperationStatusWindow : MonoBehaviour {
 
     //　ステータス画面のウインドウのオン・オフメソッド
     public void ChangeWindow(GameObject window){
+        audioSource3.Play();
         foreach (var item in windowLists){
             if (item == window){
                 item.SetActive(true);
